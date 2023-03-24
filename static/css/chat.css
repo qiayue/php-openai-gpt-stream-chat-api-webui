@@ -1,0 +1,89 @@
+body {
+    font-family: "Helvetica Neue", "Luxi Sans", "Segoe UI", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Logo";
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#app, .message.question, .input-area{
+    background-color: #f3f6fc;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.message{
+    width: 100%;
+    padding: 10px 20px;
+    border:solid 1px #c3c6cb;
+    box-sizing: border-box;
+    background-color: white;
+}
+.message p, .message pre{
+    margin: 10px 0;
+}
+
+.message.question{
+    border-radius: 10px 10px 0 0;
+}
+.message.answer{
+    margin-top: -1px;
+    margin-bottom: 20px;
+    border-radius: 0 0 10px 10px;
+}
+
+.message pre{
+    width: 100%;
+    padding: 10px;
+    background-color: #23241f;
+    border-radius: 6px;
+    color: #f8f8f2;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.input-area {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1px solid #ffffff;
+}
+
+textarea {
+    flex: 1;
+    height: 52px;
+    padding: 5px 10px;
+    line-height: 20px;
+    resize: none;
+    border: 1px solid #c3c6cb;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+button {
+    margin-left: 10px;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:disabled {
+    background-color: #c3c6cb;
+    cursor: not-allowed;
+}
