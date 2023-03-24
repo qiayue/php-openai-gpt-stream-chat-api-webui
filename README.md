@@ -58,7 +58,7 @@ $chat = new ChatGPT([
 ]);
 ```
 
-如果开启敏感词检测功能，需要把敏感词一行一个放入 `sensitive_words.txt` 文件中。
+如果开启敏感词检测功能，需要把敏感词一行一个放入 `sensitive_words_sdfdsfvdfs5v56v5dfvdf.txt` 文件中。
 
 开了一个微信群，欢迎入群交流：
 
@@ -162,9 +162,11 @@ Class.DFA.php 类代码是 GPT4 写的，具体实现代码见源码。
 
 ```php
 $dfa = new DFA([
-    'words_file' => './sensitive_words.txt',
+    'words_file' => './sensitive_words_sdfdsfvdfs5v56v5dfvdf.txt',
 ]);
 ```
+
+***特别说明：这里特意用乱码字符串文件名是为了防止他人下载敏感词文件，请你部署后也自己改一个别的乱码文件名，不要使用我这里公开了的文件名***
 
 之后就可以用 `$dfa->containsSensitiveWords($inputText)` 来判断 `$inputText` 是否包含敏感词，返回值是 `TRUE` 或 `FALSE` 的布尔值，也可以用 `$outputText = $dfa->replaceWords($inputText)` 来进行敏感词替换，所有在 `sensitive_words.txt` 中指定的敏感词都会被替换为三个`*`号。
 
@@ -172,7 +174,7 @@ $dfa = new DFA([
 
 ```php
 $dfa = new DFA([
-    'words_file' => './sensitive_words.txt',
+    'words_file' => './sensitive_words_sdfdsfvdfs5v56v5dfvdf.txt',
 ]);
 $chat->set_dfa($dfa);
 ```
@@ -278,6 +280,49 @@ function getAnswer(inputValue){
     });
 }
 ```
+
+说明一下，原生的 `EventSource` 请求，只能是 `GET` 请求，所以这里演示时，直接把提问放到 `GET` 的 `URL` 参数里了。
+如果要想用 `POST` 请求，一般有两种办法：
+
+ 1. 前后端一起改：【先发 `POST` 后发 `GET` 】用 `POST` 向后端提问，后端根据提问和时间生成一个唯一 key 随着 `POST` 请求返回给前端，前端拿到后，再发起一个 `GET` 请求，在参数里携带问题 key ，获取回答，这种方式需要修改后端代码；
+
+ 2. 只改前端：【只发一个 `POST` 请求】后端代码不用大改，只需要把 `chat.php` 中 `$question = urldecode($_GET['q'] ?? '')` 改为 `$question = urldecode($_POST['q'] ?? '')` 即可，但是前端需要改造，不能用原生 `EventSource` 请求，需要用 fetch ，设置流式接收，具体可见下方 GPT4 给出的代码示例。
+
+```js
+async function fetchAiResponse(message) {
+    try {
+        const response = await fetch("./chat.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages: [{ role: "user", content: message }] }),
+        });
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (value) {
+                const partialResponse = decoder.decode(value, { stream: true });
+                displayMessage("assistant", partialResponse);
+            }
+            if (done) {
+                break;
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching AI response:", error);
+        displayMessage("assistant", "Error: Failed to fetch AI response.");
+    }
+}
+```
+
+上方代码，关键点在于 `const partialResponse = decoder.decode(value, { stream: true })` 中的 `{ stream: true }` 。
+
 
 ### 打字机效果
 
