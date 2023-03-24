@@ -339,4 +339,4 @@ function typingWords(){
 
 ## License
 
-[BSD 2-Clause](https://github.com/qiayue/php-openai-gpt-stream-chat-api-webui/blob/master/LICENSE)
+[BSD 2-Clause](https://github.com/qiayue/php-openai-gpt-stream-chat-api-webui/blob/main/LICENSE)
