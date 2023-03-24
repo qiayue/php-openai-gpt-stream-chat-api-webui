@@ -328,7 +328,9 @@ async function fetchAiResponse(message) {
 
 对于后端返回的所有回复内容，我们需要用打字机形式打印出来。
 
-最初的方案是
+最初的方案是每次接收到后端的返回后就立即显示到页面里，后来发现这样速度太快了，眨眼就显示完了，没有打印机效果。
+所以后来的方案就改成了用定时器实现定时打印，那么就需要把收到的先放进数组里缓存起来，然后定时每 50 毫秒执行一次，打印一个内容出来。
+具体实现代码如下：
 
 ```js
 function typingWords(){
@@ -380,6 +382,33 @@ function typingWords(){
     typingIdx += 1;
     typing = false;
 }
+```
+
+### 代码渲染
+
+如果严格按照输出什么打印什么的话，那么当正在打印一段代码，需要等到代码全部打完，才能被格式化为代码块，才能高亮显示代码。
+那这个体验也太差了。
+有什么办法能够解决这个问题呢？
+答案就在问题里，既然是因为代码块有开始标记没有结束标记，那就我们给他补全结束标记就好了，直到真的结束标记来了，才不需要补全。
+
+具体的实现就是下面几行代码：
+
+```js
+if(content.indexOf('`') != -1){
+    if(content.indexOf('```') != -1){
+        codeStart = !codeStart;
+    }else if(content.indexOf('``') != -1 && (lastWord + content).indexOf('```') != -1){
+        codeStart = !codeStart;
+    }else if(content.indexOf('`') != -1 && (lastLastWord + lastWord + content).indexOf('```') != -1){
+        codeStart = !codeStart;
+    }
+}
+
+lastLastWord = lastWord;
+lastWord = content;
+
+answerContent += content;
+answers[qaIdx].innerHTML = marked.parse(answerContent+(codeStart?'\n\n```':''));
 ```
 
 ### 其它
