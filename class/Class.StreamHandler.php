@@ -105,8 +105,15 @@ class StreamHandler {
             return;
         }
         $this->chars[] = $content;
-        $content = $this->dfa->replaceWords(implode('', $this->chars));
-        $this->write($content);
+        $content = implode('', $this->chars);
+        if($this->dfa->containsSensitiveWords($content)){
+            $content = $this->dfa->replaceWords($content);
+            $this->write($content);
+        }else{
+            foreach($this->chars as $char){
+                $this->write($char);
+            }
+        }
         $this->chars = [];
     }
 
