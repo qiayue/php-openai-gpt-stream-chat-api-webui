@@ -62,8 +62,9 @@ $chat = new ChatGPT([
 
 /*
 // 如果把下面三行注释掉，则不会启用敏感词检测
+// 特别注意，这里特意用乱码字符串文件名是为了防止他人下载敏感词文件，请你部署后也自己改一个别的乱码文件名
 $dfa = new DFA([
-    'words_file' => './sensitive_words.txt',
+    'words_file' => './sensitive_words_sdfdsfvdfs5v56v5dfvdf.txt',
 ]);
 $chat->set_dfa($dfa);
 */
