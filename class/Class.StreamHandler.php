@@ -142,19 +142,12 @@ class StreamHandler {
         if(!empty($content)){
             $this->write($content, FALSE);
         }
-        if(!empty($this->chars)){
-
-        }
 
     	echo 'retry: 86400000'.PHP_EOL;
     	echo 'event: close'.PHP_EOL;
     	echo 'data: Connection closed'.PHP_EOL.PHP_EOL;
     	flush();
 
-
-        $t3 = microtime(1);
-
-        echo 't3:'.$t3."\n";
     }
 }
 
