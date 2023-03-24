@@ -60,6 +60,10 @@ $chat = new ChatGPT([
 
 如果开启敏感词检测功能，需要把敏感词一行一个放入 `sensitive_words.txt` 文件中。
 
+开了一个微信群，欢迎入群交流：
+
+![释疑微信群](https://github.com/qiayue/php-openai-gpt-stream-chat-api-webui/blob/main/static/img/WechatIMG197.jpeg)
+
 
 
 ## 原理说明
