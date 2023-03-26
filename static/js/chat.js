@@ -33,7 +33,7 @@ function sendMessage() {
     const question = document.createElement('div');
     question.setAttribute('class', 'message question');
     question.setAttribute('id', 'question-'+qaIdx);
-    question.innerHTML = marked.parse('问： '+inputValue);
+    question.innerHTML = marked.parse(inputValue);
     messagesContainer.appendChild(question);
 
     const answer = document.createElement('div');

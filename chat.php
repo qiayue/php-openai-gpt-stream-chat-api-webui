@@ -41,7 +41,7 @@ require './class/Class.StreamHandler.php';
 require './class/Class.ChatGPT.php';
 
 
-echo 'data: '.json_encode(['time'=>date('Y-m-d H:i:s'), 'content'=>'答： ']).PHP_EOL.PHP_EOL;
+echo 'data: '.json_encode(['time'=>date('Y-m-d H:i:s'), 'content'=>'']).PHP_EOL.PHP_EOL;
 flush();
 
 // 从 get 中获取提问
