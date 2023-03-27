@@ -62,7 +62,7 @@ $chat = new ChatGPT([
 
 开了一个微信群，欢迎入群交流：
 
-![释疑微信群](https://github.com/qiayue/php-openai-gpt-stream-chat-api-webui/blob/main/static/img/WechatIMG197.jpeg)
+（太多微信帐号一进来就发广告，暂时隐藏微信群二维码，要入群请加我微信，与 Github 同 id）
 
 
 
