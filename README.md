@@ -62,8 +62,7 @@ $chat = new ChatGPT([
 
 开了一个微信群，欢迎入群交流：
 
-（太多微信帐号一进来就发广告，暂时隐藏微信群二维码，要入群请加我微信，与 Github 同 id）
-
+![微信答疑群](https://tlc.nali.net/qrcode/wxgroup/openaiqa/)
 
 
 ## 原理说明
