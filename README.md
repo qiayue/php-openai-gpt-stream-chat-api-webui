@@ -62,7 +62,7 @@ $chat = new ChatGPT([
 
 开了一个微信群，欢迎入群交流：
 
-![微信答疑群](https://tlc.nali.net/qrcode/wxgroup/openaiqa/)
+![微信答疑群](https://tlc.nali.net/qrcode/wxgroup/openaiqa/?v=1)
 
 
 ## 原理说明
