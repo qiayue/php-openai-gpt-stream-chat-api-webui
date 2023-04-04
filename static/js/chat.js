@@ -55,7 +55,7 @@ function sendMessage() {
 }
 
 function getAnswer(inputValue){
-    inputValue = inputValue.replace('+', '{[$add$]}');
+    inputValue = encodeURIComponent(inputValue.replace(/\+/g, '{[$add$]}'));
     const url = "./chat.php?q="+inputValue;
     const eventSource = new EventSource(url);
 
