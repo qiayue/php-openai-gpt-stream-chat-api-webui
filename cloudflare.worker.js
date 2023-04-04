@@ -1,5 +1,5 @@
 /*
-感谢@赖嘉伟Gary 提供 Worker 代码 
+感谢@赖嘉伟Gary https://github.com/paicha 提供 Worker 代码 
 
 用途：
   使用此方式，不需要购买海外服务器，替换 /class/Class.ChatGPT.php 中的 api.openai.com 域名后，直接将本项目开源代码部署到国内服务器即可使用。
