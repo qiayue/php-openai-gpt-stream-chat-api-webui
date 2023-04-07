@@ -107,6 +107,9 @@ public function callback($ch, $data) {
         // 0、把上次缓冲区内数据拼接上本次的data
         $buffer = $this->data_buffer.$data;
 
+        //拼接完之后，要把缓冲字符串清空
+        $this->data_buffer = '';
+
         // 1、把所有的 'data: {' 替换为 '{' ，'data: [' 换成 '['
         $buffer = str_replace('data: {', '{', $buffer);
         $buffer = str_replace('data: [', '[', $buffer);
