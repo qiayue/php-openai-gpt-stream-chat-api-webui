@@ -2,6 +2,13 @@
 
 由 [@qiayue](https://github.com/qiayue/) 开源的 [纯 PHP 实现 GPT 流式调用和前端实时打印 webui ](https://github.com/qiayue/php-openai-gpt-stream-chat-api-webui) 。
 
+**4月13日更新：**
+
+1、最近速度慢是因为 OpenAI 对于免费账号限速了，在 [platform.openai.com](https://platform.openai.com/) 绑定了信用卡的才是之前的正常速度；
+
+2、限速指的是流式请求时，首个 token 返回需要 20 秒左右，而绑定了信用卡的账号，在 2 秒左右；
+
+
 ## 目录结构
 
 ```
@@ -62,7 +69,7 @@ $chat = new ChatGPT([
 
 开了一个微信群，欢迎入群交流：
 
-![微信答疑群](https://tlc.nali.net/qrcode/wxgroup/openaiqa/?v=1)
+![微信答疑群](https://raw.githubusercontent.com/qiayue/php-openai-gpt-stream-chat-api-webui/main/static/img/wxqrcode.0420.jpeg)
 
 
 ## 原理说明
