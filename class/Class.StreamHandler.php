@@ -59,8 +59,8 @@ class StreamHandler {
         $buffer = str_replace('data: [', '[', $buffer);
 
         // 2、把所有的 '}\n\n{' 替换维 '}[br]{' ， '}\n\n[' 替换为 '}[br]['
-        $buffer = str_replace('}'.PHP_EOL.PHP_EOL.'{', '}[br]{', $buffer);
-        $buffer = str_replace('}'.PHP_EOL.PHP_EOL.'[', '}[br][', $buffer);
+        $buffer = str_replace('}\n\n{', '}[br]{', $buffer);
+        $buffer = str_replace('}\n\n[', '}[br][', $buffer);
 
         // 3、用 '[br]' 分割成多行数组
         $lines = explode('[br]', $buffer);
